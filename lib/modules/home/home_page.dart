@@ -9,14 +9,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-      preferredSize: Size.fromHeight(152),
-      child: Container(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(152),
+        child: Container(
           height: 152,
           color: AppColors.primary,
           child: Center(
             child: ListTile(
-              title: Text("Olá, Murilo", style: TextStyles.titleRegular),
+              title: Text.rich(
+                TextSpan(
+                    text: "Olá, ",
+                    style: TextStyles.titleRegular,
+                    children: [
+                      TextSpan(
+                          text: "Murilo", style: TextStyles.titleBoldBackground)
+                    ]),
+              ),
               subtitle: Text("Mantenha as suas contas em dia",
                   style: TextStyles.captionShape),
               trailing: Container(
@@ -26,7 +34,37 @@ class HomePage extends StatelessWidget {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(5))),
             ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+          height: 90,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.home, color: AppColors.primary)),
+              GestureDetector(
+                onTap: () {
+                  print("Click");
+                },
+                child: Container(
+                    width: 56,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Icon(Icons.add_box_outlined,
+                        color: AppColors.background)),
+              ),
+              IconButton(
+                  onPressed: () {},
+                  icon:
+                      Icon(Icons.description_outlined, color: AppColors.body)),
+            ],
           )),
-    ));
+    );
   }
 }
